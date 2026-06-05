@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word & Character Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f54b;
+        }
+        .container {
+            background: rgb(141, 91, 91);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2f1f51;
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 75%;
+            height: 200px;
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #3b1111;
+            border-radius: 8px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .stat-box {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            flex: 1;
+            margin: 0 10px;
+        }
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .stat-label {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Word & Character Counter</h1>
+        <textarea id="textInput" placeholder="Start typing here..."></textarea>
+        
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-number" id="charCount">0</div>
+                <div class="stat-label">Characters</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="wordCount">0</div>
+                <div class="stat-label">Words</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const textInput = document.getElementById('textInput');
+        const charCount = document.getElementById('charCount');
+        const wordCount = document.getElementById('wordCount');
+
+        textInput.addEventListener('input', function() {
+            const text = textInput.value;
+            
+            // Character count
+            charCount.textContent = text.length;
+            
+            // Word count - split by spaces and filter empty strings
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+            wordCount.textContent = text.trim() === '' ? 0 : words.length;
+        });
+    </script>
+</body>
+</html>
